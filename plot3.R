@@ -1,0 +1,10 @@
+source("sourceFiles.R")
+Sys.setlocale("LC_TIME", "English")
+household_df_trunc$DateTime<-dmy_hms(household_df_trunc$DateTime,tz="UCT",truncated=3)
+
+png(file="plot3.png")
+with(household_df_trunc,plot(DateTime,Sub_metering_1,type="l",ylab="Energy sub metering",xlab=""))
+with(household_df_trunc,lines(DateTime,Sub_metering_2,col="red"))
+with(household_df_trunc,lines(DateTime,Sub_metering_3,col="blue"))
+legend("topright",c("Sub_metering_1","Sub_metering_2","Sub_metering_3"),col=c("black","red","blue"),lwd=1)
+dev.off()
